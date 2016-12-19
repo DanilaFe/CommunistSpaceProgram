@@ -20,22 +20,22 @@ public class ScriptNode {
 	/**
 	 * The child nodes of the node.
 	 **/
-	public List<ScriptNode> children;
+	List<ScriptNode> children;
 	/**
 	 * The type of the node.
 	 **/
-	public ScriptNodeType type;
+	ScriptNodeType type;
 	/**
 	 * The data associated specifically with this node.
 	 **/
-	public Dictionary<string, Object> data;
+	Dictionary<string, object> data;
 
 	/**
 	 * Creates a new ScriptNode of the given type.
 	 **/
 	public ScriptNode(ScriptNodeType nodeType){
 		children = new List<ScriptNode> ();
-		data = new Dictionary<string, Object> ();
+		data = new Dictionary<string, object> ();
 		type = nodeType;
 	}
 
@@ -51,5 +51,42 @@ public class ScriptNode {
 	 **/
 	public void removeNode(ScriptNode toRemove){
 		children.Remove (toRemove);
+	}
+
+	/**
+	 * Gets the node type.
+	 **/
+	public ScriptNodeType GetNodeType(){
+		return this.type;
+	}
+
+	/**
+	 * Sets the type of the node.
+	 **/
+	public void SetNodeType(ScriptNodeType type){
+		this.type = type;
+	}
+
+	/**
+	 * Set the data under the given string.
+	 **/
+	public void SetData(string s, object o){
+		data.Add(s, o);
+	}
+
+	/**
+	 * Get the data under the given string
+	 **/
+	public object GetData(string s){
+		object _data;
+		data.TryGetValue (s, out _data);
+		return _data;
+	}
+
+	/**
+	 * Removes the data under the given string.
+	 **/
+	public void RemoveData(string s){
+		data.Remove (s);
 	}
 }
