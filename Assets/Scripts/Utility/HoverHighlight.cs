@@ -21,6 +21,7 @@ public class HoverHighlight : MonoBehaviour {
 
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
+		spriteRenderer.color = normalColor;
 	}
 
 	void OnMouseEnter() {
