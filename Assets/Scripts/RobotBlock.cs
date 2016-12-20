@@ -12,6 +12,7 @@ public class RobotBlock {
 	 * Used to represent the type of a block.
 	 **/
 	public enum BlockType {
+		NONE,
 		CORE,
 		STRUCTURE,
 		ENGINE,
