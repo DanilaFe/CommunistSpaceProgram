@@ -95,4 +95,46 @@ public class RobotBlock {
 		return root;
 	}
 		
+	/**
+	 * Static dictionary used to load sprites for block based on their type.
+	 **/
+	static Dictionary<BlockType, Sprite> blockSprites = new Dictionary<BlockType, Sprite>();
+
+	/**
+	 * Gets the path of the sprite to load for the given block type.
+	 **/
+	static string GetSpritePathForBlockType(BlockType type){
+		string _data;
+		switch (type) {
+		default:
+			_data = "blockA";
+			break;
+		}
+		return "Blocks/" + _data;
+	}
+
+	/**
+	 * Loads the sprite for the given block type from disk.
+	 **/
+	public static Sprite LoadSpriteForBlockType(BlockType type){
+		string _path = "Graphics/" + GetSpritePathForBlockType (type);
+		Sprite _data = Resources.Load<Sprite> (_path);
+		blockSprites.Add (type, _data);
+		return _data;
+	}
+
+	/**
+	 * Searches cache for already loaded sprite. If one is not found, loads
+	 * it from disk.
+	 **/
+	public static Sprite GetSpriteForBlockType(BlockType type){
+		Sprite _data = null;
+		if (blockSprites.ContainsKey (type)) {
+			blockSprites.TryGetValue (type, out _data);
+		} else {
+			_data = LoadSpriteForBlockType (type);
+		}
+		return _data;
+	}
+		
 }
